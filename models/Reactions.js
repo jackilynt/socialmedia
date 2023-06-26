@@ -49,3 +49,42 @@ const reactionSchema = new Schema(
 //const reactionSchema = model('application', applicationSchema);
 
 module.exports = reactionSchema;
+
+
+// const { Schema, model, Types } = require('mongoose');
+
+// const reactionSchema = new Schema(
+//   {
+//     reactionId: {
+//       type: Schema.Types.ObjectId,
+//       default: function () {
+//         return new Types.ObjectId();
+//       },
+//     },
+//     username: {
+//       type: String,
+//       required: true,
+//     },
+//     createdAt: {
+//       type: Date,
+//       default: Date.now,
+//       get: function (createdAt) {
+//         return createdAt.toLocaleString(); // Format the timestamp using a desired method
+//       },
+//     },
+//     reactionBody: {
+//       type: String,
+//       required: true,
+//       minLength: 1,
+//       maxLength: 280,
+//     },
+//   },
+//   {
+//     toJSON: {
+//       virtuals: true,
+//     },
+//     id: false,
+//   }
+// );
+
+// module.exports = reactionSchema;

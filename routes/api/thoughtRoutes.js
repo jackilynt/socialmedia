@@ -1,30 +1,22 @@
+const { Thoughts } = require('../../models');
+
 const router = require('express').Router();
-// const {
-//   getApplications,
-//   getSingleApplication,
-//   createApplication,
-//   updateApplication,
-//   deleteApplication,
-//   addTag,
-//   removeTag,
-// } = require('../../controllers/appController');
 
-// // /api/applications
-// router.route('/').get(getApplications).post(createApplication);
+router.get("/", async(req,res)=>{
+  
+  await Thoughts.find({})
+  //   .then((data) =>{
+  //     console.log(data)
+  // })
+  //   .catch((err) =>{ console.log(err) });
+    .then((data) =>
+      !data
+        ? res.status(404).json({ message: 'Not found with the id!' })
+        : res.json(data)
+    )
+    .catch((err) => console.log({err:err}));
 
-// // /api/applications/:applicationId
-// router
-//   .route('/:applicationId')
-//   .get(getSingleApplication)
-//   .put(updateApplication)
-//   .delete(deleteApplication);
-
-// // /api/applications/:applicationId/tags
-// router.route('/:applicationId/tags').post(addTag);
-
-// // /api/applications/:applicationId/tags/:tagId
-// router.route('/:applicationId/tags/:tagId').delete(removeTag);
-
-// /api/thoughts/:thoughtId/reactions
+})
 
 module.exports = router;
+
