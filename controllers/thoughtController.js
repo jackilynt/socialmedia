@@ -1,4 +1,4 @@
-const { Thoughts, User } = require('../models');
+const { Thoughts, Appllication } = require('../models');
 
 module.exports = {
   // Function to get all of the Thoughts by invoking the find() method with no arguments.
@@ -80,32 +80,32 @@ module.exports = {
       )
       .catch((err) => res.status(500).json(err));
   },
-  // Adds a tag to an Thought. This method is unique in that we add the entire body of the tag rather than the ID with the mongodb $addToSet operator.
-  addTag(req, res) {
-    Thought.findOneAndUpdate(
-      { _id: req.params.ThoughtId },
-      { $addToSet: { tags: req.body } },
-      { runValidators: true, new: true }
-    )
-      .then((Thought) =>
-        !Thought
-          ? res.status(404).json({ message: 'No Thought with this id!' })
-          : res.json(Thought)
-      )
-      .catch((err) => res.status(500).json(err));
-  },
-  // Remove Thought tag. This method finds the Thought based on ID. It then updates the tags array associated with the app in question by removing it's tagId from the tags array.
-  removeTag(req, res) {
-    Thought.findOneAndUpdate(
-      { _id: req.params.ThoughtId },
-      { $pull: { tags: { tagId: req.params.tagId } } },
-      { runValidators: true, new: true }
-    )
-      .then((Thought) =>
-        !Thought
-          ? res.status(404).json({ message: 'No Thought with this id!' })
-          : res.json(Thought)
-      )
-      .catch((err) => res.status(500).json(err));
-  },
+  // // Adds a tag to an Thought. This method is unique in that we add the entire body of the tag rather than the ID with the mongodb $addToSet operator.
+  // addTag(req, res) {
+  //   Thought.findOneAndUpdate(
+  //     { _id: req.params.ThoughtId },
+  //     { $addToSet: { tags: req.body } },
+  //     { runValidators: true, new: true }
+  //   )
+  //     .then((Thought) =>
+  //       !Thought
+  //         ? res.status(404).json({ message: 'No Thought with this id!' })
+  //         : res.json(Thought)
+  //     )
+  //     .catch((err) => res.status(500).json(err));
+  // },
+  // // Remove Thought tag. This method finds the Thought based on ID. It then updates the tags array associated with the app in question by removing it's tagId from the tags array.
+  // removeTag(req, res) {
+  //   Thought.findOneAndUpdate(
+  //     { _id: req.params.ThoughtId },
+  //     { $pull: { tags: { tagId: req.params.tagId } } },
+  //     { runValidators: true, new: true }
+  //   )
+  //     .then((Thought) =>
+  //       !Thought
+  //         ? res.status(404).json({ message: 'No Thought with this id!' })
+  //         : res.json(Thought)
+  //     )
+  //     .catch((err) => res.status(500).json(err));
+  // },
 };
